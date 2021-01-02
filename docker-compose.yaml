@@ -1,19 +1,19 @@
 version: '3'
 volumes:
   openhab-conf:
-    external: true
-  openhab-userdata:
-    external: true
-  openhab-addons:
-    external: true
+   driver: local 
+   driver_opts:
+     type: "nfs"
+     o: "addr=192.168.0.209,nolock,soft,rw"
+     device: ":/mnt/pool1/docker_data01"
 services:
   openhab:
     container_name: openhab
     image: openhab/openhab
     volumes:
       - openhab-conf:/conf:rw
-      - openhab-userdata:/userdata:rw
-      - openhab-addons:/addons:rw
+        #- openhab-userdata:/userdata:rw
+        #- openhab-addons:/addons:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     ports:
