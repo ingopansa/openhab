@@ -1,0 +1,22 @@
+version: '3'
+volumes:
+  conf:
+    external: true
+  userdata:
+    external: true
+  addons:
+    external: true
+services:
+  openhab:
+    container_name: openhab
+    image: openhab/openhab
+    volumes:
+      - conf:/conf:rw
+      - userdata:/userdata:rw
+      - addons:/addons:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - 8080:8080/tcp
+    network_mode: "host"
+    restart: always
