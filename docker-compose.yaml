@@ -1,19 +1,19 @@
 version: '3'
 volumes:
-  conf:
+  openhab-conf:
     external: true
-  userdata:
+  openhab-userdata:
     external: true
-  addons:
+  openhab-addons:
     external: true
 services:
   openhab:
     container_name: openhab
     image: openhab/openhab
     volumes:
-      - conf:/conf:rw
-      - userdata:/userdata:rw
-      - addons:/addons:rw
+      - openhab-conf:/conf:rw
+      - openhab-userdata:/userdata:rw
+      - openhab-addons:/addons:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     ports:
